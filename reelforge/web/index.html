@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReelForge AI — Autonomous Instagram Content Factory (@flow.tech.0306)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">⚡</div>
+        <div class="brand-text">
+          <h2>ReelForge AI</h2>
+          <span class="handle">@flow.tech.0306</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="overview">
+          <span class="icon">📊</span> Overview
+        </button>
+        <button class="nav-item" data-tab="pipeline">
+          <span class="icon">🤖</span> Live Pipeline
+        </button>
+        <button class="nav-item" data-tab="reels">
+          <span class="icon">🎬</span> Reels Gallery
+        </button>
+        <button class="nav-item" data-tab="calendar">
+          <span class="icon">📅</span> Content Calendar
+        </button>
+        <button class="nav-item" data-tab="analytics">
+          <span class="icon">📈</span> Analytics & Learning
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <span class="icon">⚙️</span> Settings
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-badge">
+          <span class="pulse-dot"></span> System Autonomous
+        </div>
+        <p class="niche-label">AI • Coding • Tech Projects</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <h1 id="page-title">Autonomous Content Control Center</h1>
+          <p id="page-desc">Flow Tech Multi-Agent Instagram Automation Pipeline</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="trigger-btn" class="btn btn-primary">
+            <span class="btn-icon">🚀</span> Trigger Reel Pipeline
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB: Overview -->
+      <section id="tab-overview" class="tab-content active">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Reels Generated</span>
+              <span class="stat-icon">🎬</span>
+            </div>
+            <div class="stat-value" id="stat-reels">--</div>
+            <div class="stat-trend positive">↑ 100% Autonomous</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Total Views</span>
+              <span class="stat-icon">👁️</span>
+            </div>
+            <div class="stat-value" id="stat-views">--</div>
+            <div class="stat-trend positive">↑ 24% vs last week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">Followers Gained</span>
+              <span class="stat-icon">👤</span>
+            </div>
+            <div class="stat-value" id="stat-followers">--</div>
+            <div class="stat-trend positive">@flow.tech.0306 growth</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-label">QA Pass Rate</span>
+              <span class="stat-icon">🛡️</span>
+            </div>
+            <div class="stat-value" id="stat-qa">--</div>
+            <div class="stat-trend positive">Threshold: 85%</div>
+          </div>
+        </div>
+
+        <!-- Active Pipeline Monitor -->
+        <div class="card pipeline-monitor-card">
+          <div class="card-header">
+            <h3>⚡ Live Pipeline Job Progress</h3>
+            <span class="badge badge-accent" id="job-status-badge">IDLE</span>
+          </div>
+          <div class="card-body">
+            <div class="job-meta">
+              <span id="job-topic-display">Current Topic: Waiting for pipeline trigger...</span>
+              <span id="job-progress-percent">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="job-progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Agent Pipeline Steps Visualizer -->
+            <div class="agent-steps-grid">
+              <div class="step-box" id="step-topic">
+                <span class="step-icon">💡</span>
+                <span class="step-name">Topic Agent</span>
+              </div>
+              <div class="step-box" id="step-research">
+                <span class="step-icon">🔬</span>
+                <span class="step-name">Research</span>
+              </div>
+              <div class="step-box" id="step-script">
+                <span class="step-icon">📝</span>
+                <span class="step-name">Script Agent</span>
+              </div>
+              <div class="step-box" id="step-code">
+                <span class="step-icon">💻</span>
+                <span class="step-name">Code Sandbox</span>
+              </div>
+              <div class="step-box" id="step-visual">
+                <span class="step-icon">🎨</span>
+                <span class="step-name">Visual Agent</span>
+              </div>
+              <div class="step-box" id="step-voice">
+                <span class="step-icon">🎙️</span>
+                <span class="step-name">Voice TTS</span>
+              </div>
+              <div class="step-box" id="step-video">
+                <span class="step-icon">🎞️</span>
+                <span class="step-name">Video Composer</span>
+              </div>
+              <div class="step-box" id="step-qa">
+                <span class="step-icon">🛡️</span>
+                <span class="step-name">QA Gate</span>
+              </div>
+              <div class="step-box" id="step-publish">
+                <span class="step-icon">🚀</span>
+                <span class="step-name">Instagram</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Reels Grid -->
+        <div class="card">
+          <div class="card-header">
+            <h3>🎬 Recent Flow Tech Reels</h3>
+          </div>
+          <div class="card-body">
+            <div class="reels-grid" id="reels-list-overview">
+              <div class="loading-state">Loading generated Reels...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: Live Pipeline -->
+      <section id="tab-pipeline" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>🤖 Trigger Custom Reel Pipeline Job</h3>
+          </div>
+          <div class="card-body">
+            <form id="custom-job-form">
+              <div class="form-group">
+                <label>Topic / Title (Leave blank for autonomous AI discovery):</label>
+                <input type="text" id="input-topic" placeholder="e.g. Build an AI Cyber Threat Scanner in 30s">
+              </div>
+              <div class="form-group">
+                <label>Content Format:</label>
+                <select id="input-format">
+                  <option value="PROJECT_DEMO">Project Demo (Problem → Code → Demo → Result)</option>
+                  <option value="CODING_TUTORIAL">Coding Tutorial (Problem → Explanation → Code → Output)</option>
+                  <option value="AI_NEWS">AI News (News → Impact → Demo → Takeaway)</option>
+                  <option value="TOP_LIST">Top 3/5 List (Hook → Item 1 → Item 2 → Item 3 → CTA)</option>
+                  <option value="BUILD_JOURNEY">Build Journey (Idea → Dev → Failure → Solution)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Start Multi-Agent Pipeline</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>📜 Pipeline Execution Logs</h3>
+          </div>
+          <div class="card-body">
+            <pre class="terminal-logs" id="pipeline-logs">System Ready. Waiting for pipeline jobs...</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: Reels Gallery -->
+      <section id="tab-reels" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>🎬 All Generated & Published Reels</h3>
+          </div>
+          <div class="card-body">
+            <div class="reels-grid" id="reels-list-full">
+              <div class="loading-state">Loading gallery...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: Content Calendar -->
+      <section id="tab-calendar" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>📅 Dynamic Content Calendar Schedule (@flow.tech.0306)</h3>
+          </div>
+          <div class="card-body">
+            <div class="calendar-grid">
+              <div class="calendar-day">
+                <div class="day-name">Monday</div>
+                <div class="day-slot">
+                  <span class="slot-badge">AI Agent</span>
+                  <p>Project Demo</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Tuesday</div>
+                <div class="day-slot">
+                  <span class="slot-badge tip">Python</span>
+                  <p>Quick Tip</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Wednesday</div>
+                <div class="day-slot">
+                  <span class="slot-badge">AI Tools</span>
+                  <p>Explainer</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Thursday</div>
+                <div class="day-slot">
+                  <span class="slot-badge tutorial">Coding</span>
+                  <p>Tutorial</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Friday</div>
+                <div class="day-slot">
+                  <span class="slot-badge news">AI News</span>
+                  <p>News Reel</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Saturday</div>
+                <div class="day-slot">
+                  <span class="slot-badge journey">Project</span>
+                  <p>Build Journey</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+              <div class="calendar-day">
+                <div class="day-name">Sunday</div>
+                <div class="day-slot">
+                  <span class="slot-badge">Tech</span>
+                  <p>Deep Dive</p>
+                  <small>7:00 PM</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: Analytics & Learning -->
+      <section id="tab-analytics" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>📈 AI Feedback Loop & Strategy Optimizations</h3>
+          </div>
+          <div class="card-body">
+            <div class="learning-insight-box">
+              <h4>🤖 AI Learning Agent Recommendation</h4>
+              <p>Based on performance feedback across 27 published Reels, <strong>AI Agent Project Demos</strong> yield a <strong>+45% higher share rate</strong> than general tips. The autonomous scheduler has automatically allocated 3 additional weekly slots to AI-Agent demos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB: Settings -->
+      <section id="tab-settings" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h3>⚙️ Platform Configuration</h3>
+          </div>
+          <div class="card-body">
+            <div class="settings-list" id="settings-container">
+              <div class="loading-state">Loading settings...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Video Player Modal -->
+  <div id="video-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close-btn">&times;</span>
+      <h3 id="modal-title">Reel Preview</h3>
+      <div class="modal-video-container">
+        <video id="modal-video-player" controls autoplay loop style="width: 100%; max-height: 550px; border-radius: 12px;"></video>
+      </div>
+      <div class="modal-caption-container">
+        <h4>Caption & Hashtags:</h4>
+        <pre id="modal-caption-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

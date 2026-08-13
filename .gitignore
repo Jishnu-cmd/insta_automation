@@ -1,0 +1,14 @@
+# Environment secrets
+.env
+
+# Storage and generated media (videos, audio, covers, images)
+storage/
+*.db
+*.sqlite3
+
+# Python bytecode & temp files
+__pycache__/
+*.pyc
+.pytest_cache/
+.vscode/
+.idea/

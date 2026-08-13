@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+edge-tts
+moviepy
+pillow<12.0
+pygments
+sqlalchemy
+requests
+httpx
+imageio-ffmpeg
+python-dotenv
+apscheduler
+opencv-python
+instagrapi
