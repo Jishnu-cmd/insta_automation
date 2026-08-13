@@ -15,8 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Niche Selector Handler
+  const nicheSelect = document.getElementById('niche-select');
+  if (nicheSelect) {
+    nicheSelect.addEventListener('change', async (e) => {
+      const selected = e.target.value;
+      try {
+        const res = await fetch('/api/settings/niche', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ niche: selected })
+        });
+        const data = await res.json();
+        alert(`⚡ Content Topic Niche Updated to: "${selected}"! Next automated Reel will generate in this category.`);
+        loadSettings();
+      } catch (err) {
+        alert('Error updating topic niche: ' + err.message);
+      }
+    });
+  }
+
   // Fetch Stats & Initial Data
   loadStats();
+
   loadReels();
   loadJobs();
   loadSettings();
@@ -172,6 +193,11 @@ async function loadSettings() {
     const res = await fetch('/api/settings');
     const settings = await res.json();
 
+    const nicheSelect = document.getElementById('niche-select');
+    if (nicheSelect && settings.active_niche) {
+      nicheSelect.value = settings.active_niche;
+    }
+
     const container = document.getElementById('settings-container');
     container.innerHTML = Object.entries(settings).map(([k, v]) => `
       <div style="margin-bottom: 12px; font-size: 14px;">
@@ -182,6 +208,7 @@ async function loadSettings() {
     console.error('Error loading settings:', err);
   }
 }
+
 
 function openModal(title, videoUrl, caption) {
   document.getElementById('modal-title').innerText = title;

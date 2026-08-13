@@ -17,10 +17,12 @@ for d in [STORAGE_DIR, VIDEOS_DIR, AUDIO_DIR, IMAGES_DIR, COVERS_DIR, TEMP_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 class Settings(BaseModel):
-    # Brand Configuration
+    # Brand & Niche Configuration
     BRAND_NAME: str = "Flow Tech"
     INSTAGRAM_HANDLE: str = "@flow.tech.0306"
     PRIMARY_NICHE: str = "AI, Technology, Coding & Projects"
+    ACTIVE_NICHE: str = os.getenv("ACTIVE_NICHE", "AI, Coding & Tech Projects")
+
     
     # Execution & API Configuration
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")

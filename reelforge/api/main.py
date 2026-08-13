@@ -138,9 +138,32 @@ def get_settings():
         "brand_name": settings.BRAND_NAME,
         "instagram_handle": settings.INSTAGRAM_HANDLE,
         "niche": settings.PRIMARY_NICHE,
+        "active_niche": settings.ACTIVE_NICHE,
         "qa_score_threshold": settings.QA_SCORE_THRESHOLD,
         "tts_voice": settings.TTS_VOICE,
         "reels_per_day": settings.REELS_PER_DAY,
         "preferred_publish_time": settings.PREFERRED_PUBLISH_TIME,
         "publish_dry_run": settings.PUBLISH_DRY_RUN
     }
+
+@app.post("/api/settings/niche")
+def update_niche(payload: dict):
+    new_niche = payload.get("niche")
+    if not new_niche:
+        raise HTTPException(status_code=400, detail="Missing 'niche' parameter")
+    
+    settings.ACTIVE_NICHE = new_niche
+    os.environ["ACTIVE_NICHE"] = new_niche
+    
+    # Save to .env file as well
+    env_file = BASE_DIR / ".env"
+    if env_file.exists():
+        content = env_file.read_text(encoding="utf-8")
+        if "ACTIVE_NICHE=" in content:
+            lines = [f"ACTIVE_NICHE={new_niche}" if line.startswith("ACTIVE_NICHE=") else line for line in content.split("\n")]
+            env_file.write_text("\n".join(lines), encoding="utf-8")
+        else:
+            env_file.write_text(content + f"\nACTIVE_NICHE={new_niche}\n", encoding="utf-8")
+
+    return {"status": "success", "active_niche": new_niche, "message": f"Active topic niche updated to '{new_niche}'."}
+
