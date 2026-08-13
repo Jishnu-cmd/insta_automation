@@ -11,5 +11,5 @@ httpx
 imageio-ffmpeg
 python-dotenv
 apscheduler
-opencv-python
+opencv-python-headless
 instagrapi
