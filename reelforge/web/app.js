@@ -45,14 +45,15 @@ async function loadStats() {
     const res = await fetch('/api/analytics/summary');
     const data = await res.json();
 
-    document.getElementById('stat-reels').innerText = data.reels_published || '0';
-    document.getElementById('stat-views').innerText = data.total_views ? (data.total_views / 1000).toFixed(1) + 'K' : '0';
-    document.getElementById('stat-followers').innerText = '+' + (data.followers_gained || 0);
+    document.getElementById('stat-reels').innerText = data.reels_generated || '0';
+    document.getElementById('stat-published').innerText = data.reels_published || '0';
+    document.getElementById('stat-jobs').innerText = data.total_jobs || '0';
     document.getElementById('stat-qa').innerText = data.qa_pass_rate || '100%';
   } catch (err) {
     console.error('Error loading stats:', err);
   }
 }
+
 
 async function loadReels() {
   try {
