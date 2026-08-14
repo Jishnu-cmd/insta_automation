@@ -13,3 +13,4 @@ python-dotenv
 apscheduler
 opencv-python-headless
 instagrapi
+nest-asyncio
