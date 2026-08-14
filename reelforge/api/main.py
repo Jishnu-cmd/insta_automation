@@ -54,6 +54,41 @@ def health_check():
         "scheduler_running": scheduler.is_running
     }
 
+@app.get("/api/instagram/profile")
+def get_instagram_profile():
+    handle = settings.INSTAGRAM_HANDLE.replace("@", "").strip()
+    try:
+        from instagrapi import Client
+        cl = Client()
+        session_id = settings.INSTAGRAM_SESSION_ID
+        if session_id:
+            try:
+                cl.login_by_sessionid(session_id)
+            except Exception:
+                pass
+        
+        info = cl.user_info_by_username(handle)
+        return {
+            "handle": f"@{info.username}",
+            "full_name": info.full_name,
+            "followers": info.follower_count,
+            "following": info.following_count,
+            "posts_count": info.media_count,
+            "biography": info.biography,
+            "profile_pic_url": info.profile_pic_url
+        }
+    except Exception as e:
+        return {
+            "handle": f"@{handle}",
+            "full_name": settings.BRAND_NAME,
+            "followers": "Syncing",
+            "following": 0,
+            "posts_count": 5,
+            "biography": f"{settings.BRAND_NAME} - AI & Tech Automation",
+            "note": str(e)
+        }
+
+
 @app.post("/api/jobs/trigger")
 def trigger_job(payload: dict = None, background_tasks: BackgroundTasks = None, db: Session = Depends(get_db)):
     topic = payload.get("topic") if payload else None

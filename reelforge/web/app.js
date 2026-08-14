@@ -70,10 +70,23 @@ async function loadStats() {
     document.getElementById('stat-published').innerText = data.reels_published || '0';
     document.getElementById('stat-jobs').innerText = data.total_jobs || '0';
     document.getElementById('stat-qa').innerText = data.qa_pass_rate || '100%';
+
+    // Fetch real live Instagram account stats from @flow.tech.0306
+    try {
+      const pRes = await fetch('/api/instagram/profile');
+      const profile = await pRes.json();
+      if (profile.followers !== undefined && profile.followers !== 'Syncing') {
+        const followersEl = document.getElementById('stat-followers-count');
+        if (followersEl) followersEl.innerText = profile.followers;
+      }
+    } catch (pErr) {
+      console.warn('Instagram profile sync note:', pErr);
+    }
   } catch (err) {
     console.error('Error loading stats:', err);
   }
 }
+
 
 
 async function loadReels() {
