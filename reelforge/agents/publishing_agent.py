@@ -58,14 +58,24 @@ class PublishingAgent(BaseAgent):
             password = settings.INSTAGRAM_PASSWORD
             session_id = settings.INSTAGRAM_SESSION_ID
 
-            if session_id:
+            # Prioritize Direct Username & Password Login
+            if username and password:
+                self.log(state, f"Authenticating directly as @{username} with password...")
+                try:
+                    cl.login(username, password)
+                except Exception as login_err:
+                    self.log(state, f"Password login note: {str(login_err)}")
+                    if session_id:
+                        self.log(state, "Fallback: Authenticating using browser sessionid cookie...")
+                        cl.login_by_sessionid(session_id)
+                    else:
+                        raise login_err
+            elif session_id:
                 self.log(state, f"Authenticating using browser sessionid cookie...")
                 cl.login_by_sessionid(session_id)
-            else:
-                self.log(state, f"Authenticating as @{username}...")
-                cl.login(username, password)
             
             cl.dump_settings(str(session_file))
+
 
             
             # Upload Reel MP4 with cover image and caption
