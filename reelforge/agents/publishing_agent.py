@@ -28,13 +28,14 @@ class PublishingAgent(BaseAgent):
         # Determine publishing mode
         if settings.PUBLISH_DRY_RUN:
             return self._execute_dry_run_publish(state)
-        elif settings.INSTAGRAM_PASSWORD:
+        elif settings.INSTAGRAM_SESSION_ID or settings.INSTAGRAM_PASSWORD:
             return self._execute_instagrapi_publish(state)
         elif settings.INSTAGRAM_ACCESS_TOKEN:
             return self._execute_live_publish(state)
         else:
-            self.log(state, "No password or access token found. Defaulting to Dry-Run Mode.")
+            self.log(state, "No session_id, password, or access token found. Defaulting to Dry-Run Mode.")
             return self._execute_dry_run_publish(state)
+
 
     def _execute_instagrapi_publish(self, state: JobState) -> JobState:
         self.log(state, f"Publishing Reel live to @{settings.INSTAGRAM_USERNAME} using Direct Instagram Client...")
