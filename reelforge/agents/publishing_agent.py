@@ -89,14 +89,27 @@ class PublishingAgent(BaseAgent):
             )
             
             media_id = str(media.pk)
+            code = getattr(media, "code", "")
+            reel_url = f"https://www.instagram.com/p/{code}/" if code else "https://www.instagram.com/flow.tech.0306/"
+            
             state.reel_id = media_id
-            self.log(state, f"REEL PUBLISHED LIVE ON INSTAGRAM! Media PK: {media_id} (Code: {media.code})")
+            self.log(state, f"REEL PUBLISHED LIVE ON INSTAGRAM! Media PK: {media_id} (Code: {code})")
+
+            # Send upload SMS / WhatsApp notification to user's phone (9550869459)
+            try:
+                from reelforge.notifications import NotificationManager
+                topic_title = state.topic.title if state.topic else "AI Reel"
+                NotificationManager().send_upload_notification(topic_title, reel_url, media_id)
+                self.log(state, f"Upload alert notification dispatched to 9550869459.")
+            except Exception as notif_err:
+                self.log(state, f"Notification dispatch note: {str(notif_err)}")
 
         except Exception as e:
             self.log(state, f"Direct Instagram publishing exception: {str(e)}. Falling back to dry-run status.")
             state.reel_id = f"ig_instagrapi_fallback_{uuid.uuid4().hex[:8]}"
 
         return state
+
 
 
     def _execute_dry_run_publish(self, state: JobState) -> JobState:
